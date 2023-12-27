@@ -2165,8 +2165,9 @@ figure.highlight .shrink-line:hover::before {
 .post-toc-wrap {
   width: 100%;
   height: 100%;
+  font-weight: bold;
   overflow-y: auto;
-  font-size: 0.92rem;
+  font-size: 1.2rem;
 }
 .post-toc-wrap::-webkit-scrollbar-thumb {
   background: var(--toc-scrollbar-color);
@@ -2440,6 +2441,7 @@ figure.highlight .shrink-line:hover::before {
 .header-wrapper .header-content .right .pc .menu-list .menu-item {
   position: relative;
   float: left;
+  font-weight: bold;
   box-sizing: border-box;
   margin-left: 2rem;
   font-size: 1rem;
@@ -3111,9 +3113,12 @@ figure.highlight .shrink-line:hover::before {
   }
 }
 .first-screen-container .first-screen-content .bottom-placeholder {
-  width: 100%;
+  width: auto;
 }
 .first-screen-container .first-screen-content .bottom-placeholder .sc-icon-list {
+  background: rgba(220,220,220,0.3);
+  padding: 4px 5px 4px 5px;
+  border-radius: 5px;
   display: flex;
   justify-content: center;
 }
