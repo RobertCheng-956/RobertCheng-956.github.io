@@ -229,7 +229,7 @@
 
             <span class="meta-info-item post-update-date">
                 <i class="icon fa-solid fa-file-pen"></i>&nbsp;
-                <span class="pc" data-updated="Wed Dec 27 2023 16:11:49 GMT+0800">2023-12-27 16:11:49</span>
+                <span class="pc" data-updated="Thu Dec 28 2023 17:37:54 GMT+0800">2023-12-28 17:37:54</span>
             </span>
         
 
@@ -250,7 +250,7 @@
         
         
             <span class="meta-info-item post-wordcount">
-                <i class="icon fas fa-file-word"></i>&nbsp;<span>880 Words</span>
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>2.9k Words</span>
             </span>
         
         
@@ -268,22 +268,53 @@
                 <div class="post-content keep-markdown-body">
                     
 
-                    <h2 id="通过GitHub-Desktop创建Pull-Request"><a href="#通过GitHub-Desktop创建Pull-Request" class="headerlink" title="通过GitHub Desktop创建Pull Request"></a>通过GitHub Desktop创建Pull Request</h2><p>整个环节分为三步：</p>
+                    <h2 id="Technical-writer小白如何成为开源项目的贡献者？"><a href="#Technical-writer小白如何成为开源项目的贡献者？" class="headerlink" title="Technical writer小白如何成为开源项目的贡献者？"></a>Technical writer小白如何成为开源项目的贡献者？</h2><p>想要参与到GitHub中的开源项目，我们需要明白整个贡献的流程是如何完成的。</p>
+<p>整个流程实际上就是一个问题：如何能够修改GitHub网页中别人仓库中呈现出来的文档？</p>
+<h3 id="什么是仓库？"><a href="#什么是仓库？" class="headerlink" title="什么是仓库？"></a>什么是仓库？</h3><p>可以理解为一个仓库实际上就是一个项目，里面存放着所有和项目相关的文件，所有人都能够去浏览，纠错。我们所说的成为贡献者就是去为别人的仓库发现问题、解决问题。</p>
+<p>以此次的pingcap的文档挑战赛为例子，pingcap是一个用户，docs就是一个仓库，里面就放着各种各样的文档，对应着他们的产品TIDB（一个数据库产品）。</p>
+<p>作为technical writer，我们可以做的就是去查看仓库中一些文档，发现并解决问题，比如：</p>
 <ul>
-<li>fork并克隆仓库</li>
-<li>修改文件</li>
-<li>提交文件</li>
+<li>文档内容是否能够表意清晰</li>
+<li>文档格式是否正确（是否符合markdown文件的格式要求）</li>
+<li>文档是否能够正确引导别人使用TiDB（前提肯定是你要对这个产品十分了解）</li>
 </ul>
-<h3 id="fork并克隆仓库"><a href="#fork并克隆仓库" class="headerlink" title="fork并克隆仓库"></a>fork并克隆仓库</h3><ol>
-<li><p>先进入目标仓库页面，点击右上角的fork，fork到自己的仓库。</p>
-<p><img  
+<h3 id="如何对这个仓库中的文件进行修改？"><a href="#如何对这个仓库中的文件进行修改？" class="headerlink" title="如何对这个仓库中的文件进行修改？"></a>如何对这个仓库中的文件进行修改？</h3><p>有三个概念需要先了解：</p>
+<ul>
+<li>GitHub上别人的仓库（这里就是docs这个仓库，是属于pingcap这个用户的。）</li>
+<li>GitHub上自己的仓库（后面我们就需要把docs这个仓库复制一个给我们自己，这叫做fork）</li>
+<li>自己电脑上的仓库（你修改文件的时候是在自己电脑中进行的，是离线的，所以电脑上也需要docs这个仓库，这叫做clone）</li>
+</ul>
+<p>这一个流程可以简单概括为：</p>
+<ol>
+<li>fork仓库：在GitHub中将别人的仓库（pingcap的docs仓库），在GitHub上先复制一个给你自己（这就叫fork）；</li>
+<li>clone仓库：然后将你自己的这个仓库，下载到本地来（clone），这样一来，你才能够在本地进行修改；</li>
+<li>修改文件：你能够在你的电脑上进行修改了；</li>
+<li>提交文件：将你做出的修改上传到GitHub上你自己的那个仓库，此时你GitHub上的仓库就和你电脑上那个仓库是一模一样了；</li>
+<li>请求修改：然后你要请求将自己的修改传到pingcap的那个docs仓库中去，等待审核。</li>
+</ol>
+<h4 id="什么？你说为什么这么复杂？直接在pingcap那个仓库里面改不就好了？"><a href="#什么？你说为什么这么复杂？直接在pingcap那个仓库里面改不就好了？" class="headerlink" title="什么？你说为什么这么复杂？直接在pingcap那个仓库里面改不就好了？"></a>什么？你说为什么这么复杂？直接在pingcap那个仓库里面改不就好了？</h4><p>你要知道，人家pingcap那个仓库是公开的，如果人人都能直接在那个仓库修改的话，那以谁为准呢？</p>
+<p>通过你自己GitHub上自己那个docs仓库中转一下，人家pingcap的docs仓库才能有条不紊的处理来自各个国家，各个贡献者的修改。</p>
+<h4 id="什么？你说直接在本地修改然后提交给pingcap那个仓库的审核员审核不就好了？要中转干嘛"><a href="#什么？你说直接在本地修改然后提交给pingcap那个仓库的审核员审核不就好了？要中转干嘛" class="headerlink" title="什么？你说直接在本地修改然后提交给pingcap那个仓库的审核员审核不就好了？要中转干嘛"></a>什么？你说直接在本地修改然后提交给pingcap那个仓库的审核员审核不就好了？要中转干嘛</h4><p>GitHub上你自己的那个docs仓库当然不仅仅是中转，更重要的<strong>版本控制</strong>功能。</p>
+<p>往往，修改是不能一次到位的，你修改完之后，发现你修改了大半天全弄错了，但是现在这个文档已经面目全非，咋办？你心里想我现在要是能够回到过去就好了。</p>
+<p>Yes，通过你每次将修改提交给你自己的那个docs仓库，你能够回到你之前的任意一个提交的版本。</p>
+<p>这大概就是整个修改的流程了，但是在各个环节还有很多细节需要讲解，但是只要你明白了这整个提交流程的逻辑，那你理解和操作起来就会十分顺手。接下来我们就来看看，具体的操作流程是怎么样的。</p>
+<h3 id="第一步：fork别人的docs仓库"><a href="#第一步：fork别人的docs仓库" class="headerlink" title="第一步：fork别人的docs仓库"></a>第一步：fork别人的docs仓库</h3><p>进入目标仓库页面，点击右上角的fork，即可fork到自己的仓库。</p>
+<p>   <img  
                        lazyload
                        alt="image"
                        data-src="https://raw.githubusercontent.com/RobertCheng-956/Blog_pic/master/Blog_picgithubfork-2.png"
-                       
+                        alt="fork"
+                 ></p>
+<h4 id="第二步：clone自己仓库中那个docs仓库"><a href="#第二步：clone自己仓库中那个docs仓库" class="headerlink" title="第二步：clone自己仓库中那个docs仓库"></a>第二步：clone自己仓库中那个docs仓库</h4><ol>
+<li><p>点击最右上角的头像，点击<strong>Your repositories</strong>进入自己的个人仓库，找到刚刚fork好的那个仓库，点击进入。</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://raw.githubusercontent.com/RobertCheng-956/Blog_pic/master/Blog_picyourrepositories.png"
+                        alt="yourrepositories"
                  ></p>
 </li>
-<li><p>进入自己fork下来的仓库，点击绿色的<code>code</code>按钮，可以看到有三种不同的方式进行克隆</p>
+<li><p>点击绿色的<code>code</code>按钮，可以看到有三种不同的方式进行克隆</p>
 </li>
 </ol>
 <ul>
@@ -295,14 +326,28 @@
 <p><img  
                        lazyload
                        alt="image"
-                       data-src="https://raw.githubusercontent.com/RobertCheng-956/Blog_pic/master/Blog_picgithubclone.png"
-                       
+                       data-src="https://raw.githubusercontent.com/RobertCheng-956/Blog_pic/master/Blog_piccloneyourrepository.png"
+                        alt="cloneyourrepository"
                  ></p>
 </li>
 </ul>
 <p>3.这里我们点击<code>Open with GitHub Desktop</code>打开，网页就会显示出请求打开GitHub Desktop的请求，点击允许</p>
+<blockquote>
+<p>查看这个文档<a class="link"   target="_blank" rel="noopener" href="https://docs.github.com/zh/desktop/installing-and-authenticating-to-github-desktop/installing-github-desktop" >安装 GitHub Desktop<i class="fas fa-external-link-alt"></i></a>。</p>
+<p>安装很简单，不需要配置什么，安装路径都不需要选择，下载完之后点击安装就完事了。安装好了之后，在登陆好就行了。</p>
+</blockquote>
 <p>4.可以看到在GitHub Desktop中就会弹出克隆这个仓库的请求，这里需要记住你克隆的地址，因为后续需要都对本地文件做出修改。</p>
-<h3 id="修改文件"><a href="#修改文件" class="headerlink" title="修改文件"></a>修改文件</h3><p>4.在每次开始工作前，要查看本地的master分支是否与上游的master分支同步。（目前还不用涉及到这一步）</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://raw.githubusercontent.com/RobertCheng-956/Blog_pic/master/Blog_picclonebydesktop.png"
+                        alt="clonebydesktop"
+                 ></p>
+<h3 id="第三步：在本地仓库中修改文件"><a href="#第三步：在本地仓库中修改文件" class="headerlink" title="第三步：在本地仓库中修改文件"></a>第三步：在本地仓库中修改文件</h3><h4 id="3-1确保本地仓库和上游保持一致"><a href="#3-1确保本地仓库和上游保持一致" class="headerlink" title="3.1确保本地仓库和上游保持一致"></a>3.1确保本地仓库和上游保持一致</h4><p>1.在每次开始工作前，要查看本地的master分支是否与上游的master分支同步。</p>
+<blockquote>
+<p>分支这个概念我们在下一步骤会讲到，你可以理解为不同的分支，就是不同的仓库版本，master就是最主要的分支。</p>
+<p>这一步的目的，是保证你电脑上本地的这个仓库的master分支能够和pingcap的那个仓库的master分支保持同步，毕竟人家那个仓库是时时刻刻在变化的，而你本地上的那个不是。如果不同步的话，最终请求的时候会起冲突。</p>
+</blockquote>
 <ul>
 <li><p>点击上方窗口顶端的<code>Branch</code>→<code>Merge into Current Branch</code></p>
 </li>
@@ -314,57 +359,119 @@
 <p><img  
                        lazyload
                        alt="image"
-                       data-src="https://raw.githubusercontent.com/RobertCheng-956/Blog_pic/master/Blog_picupstream-merge.png"
-                        alt="upstream-merge"
+                       data-src="https://raw.githubusercontent.com/RobertCheng-956/Blog_pic/master/Blog_picdocs-upstream.png"
+                        alt="docs-upstream"
                  ></p>
 </li>
 </ul>
-<p>5.通过点击上方工具栏中的<code>Current Branch</code>新建分支，来开始修改文件。<strong>新建分支的名称，应当是对自己的修改进行一个简单总结。</strong> 新建分支成功后，可以看到上方的<code>Current Branch</code>已经切换到了新建的分支。</p>
+<p>这里有两种情况：</p>
+<ul>
+<li><p>其实我们刚刚才进行了fork，clone的操作，这么短的时间上游是不会有什么改变的，所以你会发现，在选择 <strong>upstream&#x2F;master</strong> 后，界面底部会有当前 master branch 已为最新的提示。而且，<strong>Merge upstream&#x2F;master into master</strong> 会呈现浅蓝色，如图所示。这时直接就可以进行<strong>第四步：提交文件到GitHub中自己的docs仓库</strong>了</p>
+</li>
+<li><p>上游有改变。比如你今天clone好了仓库，但是今天没有修改完成，明天接着修改，这一段时间间隔中，上游仓库就发生了改变，此时这个按钮就是可以点击的，你就需要进行<strong>Merge upstream&#x2F;master into master</strong>这一操作了。</p>
+<blockquote>
+<p> 这一步意味着，你把上游仓库masterf分支的的变化，merge到了你本地仓库里的master分支，直接跳过了你GitHub上的那一个仓库，所以，你还需要进行<strong>push origin</strong>这一步，把你本地master分支的变化，推到你GitHub仓库里的master分支中。</p>
+</blockquote>
+</li>
+</ul>
+<p>2.点击 <strong>Push origin</strong>，将刚刚 Merge 到本地 master branch的变化推至GitHub上自己的docs仓库，这样一操作完，pincap仓库的master分支，你本地电脑上的master分支，和你GitHub上仓库的master分支，就都同步了。</p>
+<h4 id="3-2-创建分支"><a href="#3-2-创建分支" class="headerlink" title="3.2 创建分支"></a>3.2 创建分支</h4><p>1.通过点击上方工具栏中的<code>Current Branch</code>新建分支，来开始修改文件。<strong>新建分支的名称，应当是对自己的修改进行一个简单总结。</strong></p>
+<blockquote>
+<p>分支实际上就是一个个不同的仓库版本，创建分支也就是创建一个master副本，在这个副本中进行具体的修改。这是为了方便管理，这样无论我们如何修改都不会影响到主分支。</p>
+<p>最终我们提交到pingcap&#x2F;docs仓库的，就是将这一整个分支都提交过去。你会看到这个仓库里本来就有很多分支，这些就是其他贡献者为了贡献自己的修改而创建的。</p>
+<p>如果你的贡献有价值，那么最终审核者就会将你的分支merge到pingcap&#x2F;docs那个仓库中去，就成功贡献了。</p>
+</blockquote>
 <p><img  
                        lazyload
                        alt="image"
-                       data-src="https://raw.githubusercontent.com/RobertCheng-956/Blog_pic/master/Blog_picnewbranch.png"
-                        alt="newbranch"
+                       data-src="D:\Documents\GitHub\hexo-blog\source_posts\How-to-create-pull-request\newbranchdocs.png"
+                        alt="newbranchdocs"
                  ></p>
-<p>6.在本地文件中找到，自己要修改的文件，在本地的编辑器中进行修改。</p>
-<h3 id="提交文件"><a href="#提交文件" class="headerlink" title="提交文件"></a>提交文件</h3><p>在进行这一步之前，我来简单讲一下这些步骤之间的逻辑，方便理解</p>
+<p>2.点击新建之后，会弹出你这个分支是基于那个分支的，一般我们都是基于master的。</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://raw.githubusercontent.com/RobertCheng-956/Blog_pic/master/Blog_picbasedonmaster.png"
+                        alt="basedonmaster"
+                 ></p>
+<p>3.新建分支成功后，可以看到上方的<code>Current Branch</code>已经切换到了新建的分支。</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://raw.githubusercontent.com/RobertCheng-956/Blog_pic/master/Blog_picchangebranch.png"
+                        alt="changebranch"
+                 ></p>
+<p>3.点击下方的<strong>Open the repository in your external editor</strong>，在自己的本地编辑器中进行编辑修改。</p>
 <blockquote>
-<p>首先我们要知道三个概念：</p>
+<p>这里我推荐的编辑器是visual studio code，下载教程请看</p>
+</blockquote>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://raw.githubusercontent.com/RobertCheng-956/Blog_pic/master/Blog_picopenineditor.png"
+                        alt="openineditor"
+                 ></p>
+<h3 id="第四步：提交文件"><a href="#第四步：提交文件" class="headerlink" title="第四步：提交文件"></a>第四步：提交文件</h3><p><em>这后面的几张图我不小心换成了docs-cn仓库，不影响你们的操作</em></p>
+<p>在进行这一步之前，我们用术语来了解一下之前说的那个流程。</p>
+<blockquote>
+<p>首先我们知道了三个概念：</p>
 <ul>
-<li>一个是最开始pingcap的那个仓库</li>
-<li>一个是你自己GitHub上的那个远程仓库（从pingcap那fork过来的）</li>
-<li>一个是你克隆到本地的那个自己电脑上的仓库（就是那些本地文件夹）</li>
+<li>一个是最开始pingcap的docs仓库</li>
+<li>一个是你自己GitHub上的那个docs仓库（从pingcap那fork过来的）</li>
+<li>一个是你克隆到本地的那个自己电脑上的docs仓库（就是那些本地文件夹）</li>
 </ul>
 <p>知道了这三个概念之后，我们来讲一下，commit，publish，create pull request 这三个东西。理解之后，你就大致能够明白整个流程关系了。</p>
 <ul>
-<li>commit：将你自己做的那些本地修改先缓存在你电脑里，也就是说你每次修改完之后，就点击commit，然后添加以下description来描述你修改了什么，先缓存着，方便下次接着修改。</li>
-<li>publish：将缓存的这些修改提交到你自己的那个远程仓库</li>
-<li>create pull request：将你自己那个远程仓库里的修改，在拉取请求，让pingcap那边的reviewer来审查，看你的修改是否有价值。如果你的修改是有价值的，那么你的pull request就会被合并（merge）。</li>
+<li>commit：将你自己在新建分支中做的那些修改先缓存在电脑里，也就是说你每次修改完之后，就点击commit，然后添加以下description来描述你修改了什么，先缓存着，方便下次接着修改。（此时修改还在你自己电脑上）</li>
+<li>publish：将缓存的这个分支提交到你自己GitHub上的docs仓库。（此时修改同步到了你的GitHub上了）</li>
+<li>create pull request：将你自己GitHub中的docs仓库里的分支，在拉取请求，让pingcap那边的reviewer来审查，看你的修改是否有价值。如果你的修改是有价值的，那么你的pull request就会被合并（merge）。（此时修改请求已经提交给pingcap的docs仓库，等待审核即可。）</li>
 </ul>
 </blockquote>
 <p>以上就是整个提交部分的流程。</p>
-<p>7.修改完毕后，回到GitHub Desktop中，会发现其中会显示你对哪个文件，做出了哪些修改。确认自己是否正确，是否完成。</p>
+<p>1.在你打开本地编辑器后，只要你做出了任何修改，回到GitHub Desktop中来，会自动显示你进行了哪些修改，红色就是删除了哪些东西，绿色就是增加的哪些东西。</p>
 <p><img  
                        lazyload
                        alt="image"
                        data-src="https://raw.githubusercontent.com/RobertCheng-956/Blog_pic/master/Blog_piclocalchange.png"
                         alt="localchange"
                  ></p>
-<p>8.点击左下方的<code>commit</code>进行提交，在点击提交之前，需要在<code>commit</code>按钮上方的<code>Summary</code>中简单总结自己的修改，就像之前创建分支时，新建分支名一样。</p>
+<p>2.点击左下方的<code>commit</code>进行提交，在点击提交之前，需要在<code>commit</code>按钮上方的<code>Summary</code>中简单总结自己的修改，就像之前创建分支时，新建分支名一样。</p>
 <p><img  
                        lazyload
                        alt="image"
                        data-src="https://raw.githubusercontent.com/RobertCheng-956/Blog_pic/master/Blog_piccommit-message.png"
                         alt="commit-message"
                  ></p>
-<p>9.然后点击上方工具栏第三个按钮<code>Publish branch</code>将新建的分支和<code>Commit</code>推到网页端账户上。</p>
+<p>记住，只要你要进行离开这个分支的操作，那你就要先commit提交到缓存中去，不然就会丢失掉你修改的内容。</p>
+<p>3.然后点击上方工具栏第三个按钮<code>Publish branch</code>将新建的分支和和你在这个分支上的修改，提交的<code>Commit</code>都同步到你GitHub的那个docs仓库中去。</p>
 <p><img  
                        lazyload
                        alt="image"
                        data-src="https://raw.githubusercontent.com/RobertCheng-956/Blog_pic/master/Blog_picpublish.png"
                         alt="publish"
                  ></p>
-<p>10.然后点击<code>Create Pull Request</code>按钮请求上游仓库拉取。点击后会跳到PR描述界面，按照人家的要求来填写，你这次pr修改了哪些地方。</p>
+<p>4.然后点击界面上的<strong>preview pull request</strong>，预览一下你修改的文件，再次确认是否正确</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://raw.githubusercontent.com/RobertCheng-956/Blog_pic/master/Blog_picpreviewrequest.png"
+                        alt="previewrequest"
+                 ></p>
+<p>5.你会看到以下界面，然后点击<code>Create Pull Request</code>按钮请求上游仓库拉取。</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://raw.githubusercontent.com/RobertCheng-956/Blog_pic/master/Blog_piccreatepullrequest.png"
+                        alt="createpullrequest"
+                 ></p>
+<p>6.然后就会自动跳转到网页端pingcap&#x2F;docs仓库的提交pull request界面，仓库的管理员已经预设了一个模板，你按照要求填好就行了，主要是确认你是否已经签订了协议，修改了哪些地方，以及修改的是哪个版本。</p>
+<p><img  
+                       lazyload
+                       alt="image"
+                       data-src="https://raw.githubusercontent.com/RobertCheng-956/Blog_pic/master/Blog_picprtempalte.png"
+                        alt="prtempalte"
+                 ></p>
+<p>然后等待审核就行了。</p>
 
                 </div>
 
@@ -419,11 +526,11 @@
                             <div class="next-post">
                                 <a class="next"
                                    rel="next"
-                                   href="/2023/12/23/HelloWorld/"
-                                   title="Hello World!"
+                                   href="/2023/12/23/turorial/"
+                                   title="Pingcap/TiDB文档挑战赛 - 贡献翻译教程"
                                 >
                                     <span class="title flex-center">
-                                        <span class="post-nav-title-item text-ellipsis">Hello World!</span>
+                                        <span class="post-nav-title-item text-ellipsis">Pingcap/TiDB文档挑战赛 - 贡献翻译教程</span>
                                         <span class="post-nav-item">Next posts</span>
                                     </span>
                                     <span class="right arrow-icon flex-center">
@@ -451,7 +558,7 @@
             <div class="pc-post-toc right-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E8%BF%87GitHub-Desktop%E5%88%9B%E5%BB%BAPull-Request"><span class="nav-text">通过GitHub Desktop创建Pull Request</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#fork%E5%B9%B6%E5%85%8B%E9%9A%86%E4%BB%93%E5%BA%93"><span class="nav-text">fork并克隆仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6"><span class="nav-text">修改文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%90%E4%BA%A4%E6%96%87%E4%BB%B6"><span class="nav-text">提交文件</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Technical-writer%E5%B0%8F%E7%99%BD%E5%A6%82%E4%BD%95%E6%88%90%E4%B8%BA%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E7%9A%84%E8%B4%A1%E7%8C%AE%E8%80%85%EF%BC%9F"><span class="nav-text">Technical writer小白如何成为开源项目的贡献者？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BB%93%E5%BA%93%EF%BC%9F"><span class="nav-text">什么是仓库？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%AF%B9%E8%BF%99%E4%B8%AA%E4%BB%93%E5%BA%93%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%BF%9B%E8%A1%8C%E4%BF%AE%E6%94%B9%EF%BC%9F"><span class="nav-text">如何对这个仓库中的文件进行修改？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%EF%BC%9F%E4%BD%A0%E8%AF%B4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%A4%8D%E6%9D%82%EF%BC%9F%E7%9B%B4%E6%8E%A5%E5%9C%A8pingcap%E9%82%A3%E4%B8%AA%E4%BB%93%E5%BA%93%E9%87%8C%E9%9D%A2%E6%94%B9%E4%B8%8D%E5%B0%B1%E5%A5%BD%E4%BA%86%EF%BC%9F"><span class="nav-text">什么？你说为什么这么复杂？直接在pingcap那个仓库里面改不就好了？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%EF%BC%9F%E4%BD%A0%E8%AF%B4%E7%9B%B4%E6%8E%A5%E5%9C%A8%E6%9C%AC%E5%9C%B0%E4%BF%AE%E6%94%B9%E7%84%B6%E5%90%8E%E6%8F%90%E4%BA%A4%E7%BB%99pingcap%E9%82%A3%E4%B8%AA%E4%BB%93%E5%BA%93%E7%9A%84%E5%AE%A1%E6%A0%B8%E5%91%98%E5%AE%A1%E6%A0%B8%E4%B8%8D%E5%B0%B1%E5%A5%BD%E4%BA%86%EF%BC%9F%E8%A6%81%E4%B8%AD%E8%BD%AC%E5%B9%B2%E5%98%9B"><span class="nav-text">什么？你说直接在本地修改然后提交给pingcap那个仓库的审核员审核不就好了？要中转干嘛</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9Afork%E5%88%AB%E4%BA%BA%E7%9A%84docs%E4%BB%93%E5%BA%93"><span class="nav-text">第一步：fork别人的docs仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9Aclone%E8%87%AA%E5%B7%B1%E4%BB%93%E5%BA%93%E4%B8%AD%E9%82%A3%E4%B8%AAdocs%E4%BB%93%E5%BA%93"><span class="nav-text">第二步：clone自己仓库中那个docs仓库</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E5%9C%A8%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E4%B8%AD%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6"><span class="nav-text">第三步：在本地仓库中修改文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1%E7%A1%AE%E4%BF%9D%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E5%92%8C%E4%B8%8A%E6%B8%B8%E4%BF%9D%E6%8C%81%E4%B8%80%E8%87%B4"><span class="nav-text">3.1确保本地仓库和上游保持一致</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-%E5%88%9B%E5%BB%BA%E5%88%86%E6%94%AF"><span class="nav-text">3.2 创建分支</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E6%8F%90%E4%BA%A4%E6%96%87%E4%BB%B6"><span class="nav-text">第四步：提交文件</span></a></li></ol></li></ol>
     </div>
 </div>
 
@@ -498,7 +605,7 @@
             
                 <span class="count-box border-box word">
                     <span class="item-type border-box">Total words</span>
-                    <span class="item-value border-box word">1.1k</span>
+                    <span class="item-value border-box word">4.2k</span>
                 </span>
             
 
@@ -622,7 +729,7 @@
             <div class="tablet-post-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E8%BF%87GitHub-Desktop%E5%88%9B%E5%BB%BAPull-Request"><span class="nav-text">通过GitHub Desktop创建Pull Request</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#fork%E5%B9%B6%E5%85%8B%E9%9A%86%E4%BB%93%E5%BA%93"><span class="nav-text">fork并克隆仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6"><span class="nav-text">修改文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%90%E4%BA%A4%E6%96%87%E4%BB%B6"><span class="nav-text">提交文件</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Technical-writer%E5%B0%8F%E7%99%BD%E5%A6%82%E4%BD%95%E6%88%90%E4%B8%BA%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E7%9A%84%E8%B4%A1%E7%8C%AE%E8%80%85%EF%BC%9F"><span class="nav-text">Technical writer小白如何成为开源项目的贡献者？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BB%93%E5%BA%93%EF%BC%9F"><span class="nav-text">什么是仓库？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%AF%B9%E8%BF%99%E4%B8%AA%E4%BB%93%E5%BA%93%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%BF%9B%E8%A1%8C%E4%BF%AE%E6%94%B9%EF%BC%9F"><span class="nav-text">如何对这个仓库中的文件进行修改？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%EF%BC%9F%E4%BD%A0%E8%AF%B4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%A4%8D%E6%9D%82%EF%BC%9F%E7%9B%B4%E6%8E%A5%E5%9C%A8pingcap%E9%82%A3%E4%B8%AA%E4%BB%93%E5%BA%93%E9%87%8C%E9%9D%A2%E6%94%B9%E4%B8%8D%E5%B0%B1%E5%A5%BD%E4%BA%86%EF%BC%9F"><span class="nav-text">什么？你说为什么这么复杂？直接在pingcap那个仓库里面改不就好了？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%EF%BC%9F%E4%BD%A0%E8%AF%B4%E7%9B%B4%E6%8E%A5%E5%9C%A8%E6%9C%AC%E5%9C%B0%E4%BF%AE%E6%94%B9%E7%84%B6%E5%90%8E%E6%8F%90%E4%BA%A4%E7%BB%99pingcap%E9%82%A3%E4%B8%AA%E4%BB%93%E5%BA%93%E7%9A%84%E5%AE%A1%E6%A0%B8%E5%91%98%E5%AE%A1%E6%A0%B8%E4%B8%8D%E5%B0%B1%E5%A5%BD%E4%BA%86%EF%BC%9F%E8%A6%81%E4%B8%AD%E8%BD%AC%E5%B9%B2%E5%98%9B"><span class="nav-text">什么？你说直接在本地修改然后提交给pingcap那个仓库的审核员审核不就好了？要中转干嘛</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9Afork%E5%88%AB%E4%BA%BA%E7%9A%84docs%E4%BB%93%E5%BA%93"><span class="nav-text">第一步：fork别人的docs仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9Aclone%E8%87%AA%E5%B7%B1%E4%BB%93%E5%BA%93%E4%B8%AD%E9%82%A3%E4%B8%AAdocs%E4%BB%93%E5%BA%93"><span class="nav-text">第二步：clone自己仓库中那个docs仓库</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E5%9C%A8%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E4%B8%AD%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6"><span class="nav-text">第三步：在本地仓库中修改文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1%E7%A1%AE%E4%BF%9D%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E5%92%8C%E4%B8%8A%E6%B8%B8%E4%BF%9D%E6%8C%81%E4%B8%80%E8%87%B4"><span class="nav-text">3.1确保本地仓库和上游保持一致</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-%E5%88%9B%E5%BB%BA%E5%88%86%E6%94%AF"><span class="nav-text">3.2 创建分支</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E6%8F%90%E4%BA%A4%E6%96%87%E4%BB%B6"><span class="nav-text">第四步：提交文件</span></a></li></ol></li></ol>
     </div>
 </div>
 
