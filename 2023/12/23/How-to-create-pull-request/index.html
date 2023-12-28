@@ -9,7 +9,7 @@
     
     <title>
         
-            如何通过GitHub Desktop创建Pull Request？ |
+            Technical writer小白如何成为开源项目的贡献者？ |
         
         Ray
     </title>
@@ -195,7 +195,7 @@
             <div class="post-content-bottom border-box">
                 
                     <div class="post-title">
-                        如何通过GitHub Desktop创建Pull Request？
+                        Technical writer小白如何成为开源项目的贡献者？
                     </div>
                 
 
@@ -229,7 +229,7 @@
 
             <span class="meta-info-item post-update-date">
                 <i class="icon fa-solid fa-file-pen"></i>&nbsp;
-                <span class="pc" data-updated="Thu Dec 28 2023 17:37:54 GMT+0800">2023-12-28 17:37:54</span>
+                <span class="pc" data-updated="Thu Dec 28 2023 17:47:27 GMT+0800">2023-12-28 17:47:27</span>
             </span>
         
 
@@ -250,7 +250,7 @@
         
         
             <span class="meta-info-item post-wordcount">
-                <i class="icon fas fa-file-word"></i>&nbsp;<span>2.9k Words</span>
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>3k Words</span>
             </span>
         
         
@@ -268,7 +268,7 @@
                 <div class="post-content keep-markdown-body">
                     
 
-                    <h2 id="Technical-writer小白如何成为开源项目的贡献者？"><a href="#Technical-writer小白如何成为开源项目的贡献者？" class="headerlink" title="Technical writer小白如何成为开源项目的贡献者？"></a>Technical writer小白如何成为开源项目的贡献者？</h2><p>想要参与到GitHub中的开源项目，我们需要明白整个贡献的流程是如何完成的。</p>
+                    <p>想要参与到GitHub中的开源项目，我们需要明白整个贡献的流程是如何完成的。</p>
 <p>整个流程实际上就是一个问题：如何能够修改GitHub网页中别人仓库中呈现出来的文档？</p>
 <h3 id="什么是仓库？"><a href="#什么是仓库？" class="headerlink" title="什么是仓库？"></a>什么是仓库？</h3><p>可以理解为一个仓库实际上就是一个项目，里面存放着所有和项目相关的文件，所有人都能够去浏览，纠错。我们所说的成为贡献者就是去为别人的仓库发现问题、解决问题。</p>
 <p>以此次的pingcap的文档挑战赛为例子，pingcap是一个用户，docs就是一个仓库，里面就放着各种各样的文档，对应着他们的产品TIDB（一个数据库产品）。</p>
@@ -299,13 +299,20 @@
 <p>Yes，通过你每次将修改提交给你自己的那个docs仓库，你能够回到你之前的任意一个提交的版本。</p>
 <p>这大概就是整个修改的流程了，但是在各个环节还有很多细节需要讲解，但是只要你明白了这整个提交流程的逻辑，那你理解和操作起来就会十分顺手。接下来我们就来看看，具体的操作流程是怎么样的。</p>
 <h3 id="第一步：fork别人的docs仓库"><a href="#第一步：fork别人的docs仓库" class="headerlink" title="第一步：fork别人的docs仓库"></a>第一步：fork别人的docs仓库</h3><p>进入目标仓库页面，点击右上角的fork，即可fork到自己的仓库。</p>
+<p>此处需要强调的是：</p>
+<blockquote>
+<ul>
+<li>当认领了中文仓库 <a class="link"   target="_blank" rel="noopener" href="https://github.com/pingcap/docs-cn" >pingcap&#x2F;docs-cn<i class="fas fa-external-link-alt"></i></a>的一个待翻译 PR 后，你需要在英文仓库 <a class="link"   target="_blank" rel="noopener" href="https://github.com/pingcap/docs" >pingcap&#x2F;docs<i class="fas fa-external-link-alt"></i></a> 建一个对应的英文 PR。</li>
+<li>当认领了英文仓库 <a class="link"   target="_blank" rel="noopener" href="https://github.com/pingcap/docs" >pingcap&#x2F;docs<i class="fas fa-external-link-alt"></i></a> 的一个待翻译 PR 后，你需要在中文仓库 <a class="link"   target="_blank" rel="noopener" href="https://github.com/pingcap/docs-cn" >pingcap&#x2F;docs-cn<i class="fas fa-external-link-alt"></i></a> 建一个对应的中文 PR。</li>
+</ul>
+</blockquote>
 <p>   <img  
                        lazyload
                        alt="image"
                        data-src="https://raw.githubusercontent.com/RobertCheng-956/Blog_pic/master/Blog_picgithubfork-2.png"
                         alt="fork"
                  ></p>
-<h4 id="第二步：clone自己仓库中那个docs仓库"><a href="#第二步：clone自己仓库中那个docs仓库" class="headerlink" title="第二步：clone自己仓库中那个docs仓库"></a>第二步：clone自己仓库中那个docs仓库</h4><ol>
+<h3 id="第二步：clone自己仓库中那个docs仓库"><a href="#第二步：clone自己仓库中那个docs仓库" class="headerlink" title="第二步：clone自己仓库中那个docs仓库"></a>第二步：clone自己仓库中那个docs仓库</h3><ol>
 <li><p>点击最右上角的头像，点击<strong>Your repositories</strong>进入自己的个人仓库，找到刚刚fork好的那个仓库，点击进入。</p>
 <p><img  
                        lazyload
@@ -522,15 +529,31 @@
                 
                     <div class="post-nav border-box">
                         
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2023/12/23/turorial/"
+                                   title="Pingcap/TiDB文档挑战赛 - 贡献翻译教程"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">Pingcap/TiDB文档挑战赛 - 贡献翻译教程</span>
+                                        <span class="post-nav-item">Prev posts</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
                         
                             <div class="next-post">
                                 <a class="next"
                                    rel="next"
-                                   href="/2023/12/23/turorial/"
-                                   title="Pingcap/TiDB文档挑战赛 - 贡献翻译教程"
+                                   href="/2023/12/23/HelloWorld/"
+                                   title="Hello World!"
                                 >
                                     <span class="title flex-center">
-                                        <span class="post-nav-title-item text-ellipsis">Pingcap/TiDB文档挑战赛 - 贡献翻译教程</span>
+                                        <span class="post-nav-title-item text-ellipsis">Hello World!</span>
                                         <span class="post-nav-item">Next posts</span>
                                     </span>
                                     <span class="right arrow-icon flex-center">
@@ -558,7 +581,7 @@
             <div class="pc-post-toc right-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Technical-writer%E5%B0%8F%E7%99%BD%E5%A6%82%E4%BD%95%E6%88%90%E4%B8%BA%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E7%9A%84%E8%B4%A1%E7%8C%AE%E8%80%85%EF%BC%9F"><span class="nav-text">Technical writer小白如何成为开源项目的贡献者？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BB%93%E5%BA%93%EF%BC%9F"><span class="nav-text">什么是仓库？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%AF%B9%E8%BF%99%E4%B8%AA%E4%BB%93%E5%BA%93%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%BF%9B%E8%A1%8C%E4%BF%AE%E6%94%B9%EF%BC%9F"><span class="nav-text">如何对这个仓库中的文件进行修改？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%EF%BC%9F%E4%BD%A0%E8%AF%B4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%A4%8D%E6%9D%82%EF%BC%9F%E7%9B%B4%E6%8E%A5%E5%9C%A8pingcap%E9%82%A3%E4%B8%AA%E4%BB%93%E5%BA%93%E9%87%8C%E9%9D%A2%E6%94%B9%E4%B8%8D%E5%B0%B1%E5%A5%BD%E4%BA%86%EF%BC%9F"><span class="nav-text">什么？你说为什么这么复杂？直接在pingcap那个仓库里面改不就好了？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%EF%BC%9F%E4%BD%A0%E8%AF%B4%E7%9B%B4%E6%8E%A5%E5%9C%A8%E6%9C%AC%E5%9C%B0%E4%BF%AE%E6%94%B9%E7%84%B6%E5%90%8E%E6%8F%90%E4%BA%A4%E7%BB%99pingcap%E9%82%A3%E4%B8%AA%E4%BB%93%E5%BA%93%E7%9A%84%E5%AE%A1%E6%A0%B8%E5%91%98%E5%AE%A1%E6%A0%B8%E4%B8%8D%E5%B0%B1%E5%A5%BD%E4%BA%86%EF%BC%9F%E8%A6%81%E4%B8%AD%E8%BD%AC%E5%B9%B2%E5%98%9B"><span class="nav-text">什么？你说直接在本地修改然后提交给pingcap那个仓库的审核员审核不就好了？要中转干嘛</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9Afork%E5%88%AB%E4%BA%BA%E7%9A%84docs%E4%BB%93%E5%BA%93"><span class="nav-text">第一步：fork别人的docs仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9Aclone%E8%87%AA%E5%B7%B1%E4%BB%93%E5%BA%93%E4%B8%AD%E9%82%A3%E4%B8%AAdocs%E4%BB%93%E5%BA%93"><span class="nav-text">第二步：clone自己仓库中那个docs仓库</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E5%9C%A8%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E4%B8%AD%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6"><span class="nav-text">第三步：在本地仓库中修改文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1%E7%A1%AE%E4%BF%9D%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E5%92%8C%E4%B8%8A%E6%B8%B8%E4%BF%9D%E6%8C%81%E4%B8%80%E8%87%B4"><span class="nav-text">3.1确保本地仓库和上游保持一致</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-%E5%88%9B%E5%BB%BA%E5%88%86%E6%94%AF"><span class="nav-text">3.2 创建分支</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E6%8F%90%E4%BA%A4%E6%96%87%E4%BB%B6"><span class="nav-text">第四步：提交文件</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BB%93%E5%BA%93%EF%BC%9F"><span class="nav-text">什么是仓库？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%AF%B9%E8%BF%99%E4%B8%AA%E4%BB%93%E5%BA%93%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%BF%9B%E8%A1%8C%E4%BF%AE%E6%94%B9%EF%BC%9F"><span class="nav-text">如何对这个仓库中的文件进行修改？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%EF%BC%9F%E4%BD%A0%E8%AF%B4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%A4%8D%E6%9D%82%EF%BC%9F%E7%9B%B4%E6%8E%A5%E5%9C%A8pingcap%E9%82%A3%E4%B8%AA%E4%BB%93%E5%BA%93%E9%87%8C%E9%9D%A2%E6%94%B9%E4%B8%8D%E5%B0%B1%E5%A5%BD%E4%BA%86%EF%BC%9F"><span class="nav-text">什么？你说为什么这么复杂？直接在pingcap那个仓库里面改不就好了？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%EF%BC%9F%E4%BD%A0%E8%AF%B4%E7%9B%B4%E6%8E%A5%E5%9C%A8%E6%9C%AC%E5%9C%B0%E4%BF%AE%E6%94%B9%E7%84%B6%E5%90%8E%E6%8F%90%E4%BA%A4%E7%BB%99pingcap%E9%82%A3%E4%B8%AA%E4%BB%93%E5%BA%93%E7%9A%84%E5%AE%A1%E6%A0%B8%E5%91%98%E5%AE%A1%E6%A0%B8%E4%B8%8D%E5%B0%B1%E5%A5%BD%E4%BA%86%EF%BC%9F%E8%A6%81%E4%B8%AD%E8%BD%AC%E5%B9%B2%E5%98%9B"><span class="nav-text">什么？你说直接在本地修改然后提交给pingcap那个仓库的审核员审核不就好了？要中转干嘛</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9Afork%E5%88%AB%E4%BA%BA%E7%9A%84docs%E4%BB%93%E5%BA%93"><span class="nav-text">第一步：fork别人的docs仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9Aclone%E8%87%AA%E5%B7%B1%E4%BB%93%E5%BA%93%E4%B8%AD%E9%82%A3%E4%B8%AAdocs%E4%BB%93%E5%BA%93"><span class="nav-text">第二步：clone自己仓库中那个docs仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E5%9C%A8%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E4%B8%AD%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6"><span class="nav-text">第三步：在本地仓库中修改文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1%E7%A1%AE%E4%BF%9D%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E5%92%8C%E4%B8%8A%E6%B8%B8%E4%BF%9D%E6%8C%81%E4%B8%80%E8%87%B4"><span class="nav-text">3.1确保本地仓库和上游保持一致</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-%E5%88%9B%E5%BB%BA%E5%88%86%E6%94%AF"><span class="nav-text">3.2 创建分支</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E6%8F%90%E4%BA%A4%E6%96%87%E4%BB%B6"><span class="nav-text">第四步：提交文件</span></a></li></ol>
     </div>
 </div>
 
@@ -605,7 +628,7 @@
             
                 <span class="count-box border-box word">
                     <span class="item-type border-box">Total words</span>
-                    <span class="item-value border-box word">4.2k</span>
+                    <span class="item-value border-box word">4k</span>
                 </span>
             
 
@@ -729,7 +752,7 @@
             <div class="tablet-post-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Technical-writer%E5%B0%8F%E7%99%BD%E5%A6%82%E4%BD%95%E6%88%90%E4%B8%BA%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E7%9A%84%E8%B4%A1%E7%8C%AE%E8%80%85%EF%BC%9F"><span class="nav-text">Technical writer小白如何成为开源项目的贡献者？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BB%93%E5%BA%93%EF%BC%9F"><span class="nav-text">什么是仓库？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%AF%B9%E8%BF%99%E4%B8%AA%E4%BB%93%E5%BA%93%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%BF%9B%E8%A1%8C%E4%BF%AE%E6%94%B9%EF%BC%9F"><span class="nav-text">如何对这个仓库中的文件进行修改？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%EF%BC%9F%E4%BD%A0%E8%AF%B4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%A4%8D%E6%9D%82%EF%BC%9F%E7%9B%B4%E6%8E%A5%E5%9C%A8pingcap%E9%82%A3%E4%B8%AA%E4%BB%93%E5%BA%93%E9%87%8C%E9%9D%A2%E6%94%B9%E4%B8%8D%E5%B0%B1%E5%A5%BD%E4%BA%86%EF%BC%9F"><span class="nav-text">什么？你说为什么这么复杂？直接在pingcap那个仓库里面改不就好了？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%EF%BC%9F%E4%BD%A0%E8%AF%B4%E7%9B%B4%E6%8E%A5%E5%9C%A8%E6%9C%AC%E5%9C%B0%E4%BF%AE%E6%94%B9%E7%84%B6%E5%90%8E%E6%8F%90%E4%BA%A4%E7%BB%99pingcap%E9%82%A3%E4%B8%AA%E4%BB%93%E5%BA%93%E7%9A%84%E5%AE%A1%E6%A0%B8%E5%91%98%E5%AE%A1%E6%A0%B8%E4%B8%8D%E5%B0%B1%E5%A5%BD%E4%BA%86%EF%BC%9F%E8%A6%81%E4%B8%AD%E8%BD%AC%E5%B9%B2%E5%98%9B"><span class="nav-text">什么？你说直接在本地修改然后提交给pingcap那个仓库的审核员审核不就好了？要中转干嘛</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9Afork%E5%88%AB%E4%BA%BA%E7%9A%84docs%E4%BB%93%E5%BA%93"><span class="nav-text">第一步：fork别人的docs仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9Aclone%E8%87%AA%E5%B7%B1%E4%BB%93%E5%BA%93%E4%B8%AD%E9%82%A3%E4%B8%AAdocs%E4%BB%93%E5%BA%93"><span class="nav-text">第二步：clone自己仓库中那个docs仓库</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E5%9C%A8%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E4%B8%AD%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6"><span class="nav-text">第三步：在本地仓库中修改文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1%E7%A1%AE%E4%BF%9D%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E5%92%8C%E4%B8%8A%E6%B8%B8%E4%BF%9D%E6%8C%81%E4%B8%80%E8%87%B4"><span class="nav-text">3.1确保本地仓库和上游保持一致</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-%E5%88%9B%E5%BB%BA%E5%88%86%E6%94%AF"><span class="nav-text">3.2 创建分支</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E6%8F%90%E4%BA%A4%E6%96%87%E4%BB%B6"><span class="nav-text">第四步：提交文件</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BB%93%E5%BA%93%EF%BC%9F"><span class="nav-text">什么是仓库？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%AF%B9%E8%BF%99%E4%B8%AA%E4%BB%93%E5%BA%93%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%BF%9B%E8%A1%8C%E4%BF%AE%E6%94%B9%EF%BC%9F"><span class="nav-text">如何对这个仓库中的文件进行修改？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%EF%BC%9F%E4%BD%A0%E8%AF%B4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%A4%8D%E6%9D%82%EF%BC%9F%E7%9B%B4%E6%8E%A5%E5%9C%A8pingcap%E9%82%A3%E4%B8%AA%E4%BB%93%E5%BA%93%E9%87%8C%E9%9D%A2%E6%94%B9%E4%B8%8D%E5%B0%B1%E5%A5%BD%E4%BA%86%EF%BC%9F"><span class="nav-text">什么？你说为什么这么复杂？直接在pingcap那个仓库里面改不就好了？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%EF%BC%9F%E4%BD%A0%E8%AF%B4%E7%9B%B4%E6%8E%A5%E5%9C%A8%E6%9C%AC%E5%9C%B0%E4%BF%AE%E6%94%B9%E7%84%B6%E5%90%8E%E6%8F%90%E4%BA%A4%E7%BB%99pingcap%E9%82%A3%E4%B8%AA%E4%BB%93%E5%BA%93%E7%9A%84%E5%AE%A1%E6%A0%B8%E5%91%98%E5%AE%A1%E6%A0%B8%E4%B8%8D%E5%B0%B1%E5%A5%BD%E4%BA%86%EF%BC%9F%E8%A6%81%E4%B8%AD%E8%BD%AC%E5%B9%B2%E5%98%9B"><span class="nav-text">什么？你说直接在本地修改然后提交给pingcap那个仓库的审核员审核不就好了？要中转干嘛</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9Afork%E5%88%AB%E4%BA%BA%E7%9A%84docs%E4%BB%93%E5%BA%93"><span class="nav-text">第一步：fork别人的docs仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9Aclone%E8%87%AA%E5%B7%B1%E4%BB%93%E5%BA%93%E4%B8%AD%E9%82%A3%E4%B8%AAdocs%E4%BB%93%E5%BA%93"><span class="nav-text">第二步：clone自己仓库中那个docs仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E5%9C%A8%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E4%B8%AD%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6"><span class="nav-text">第三步：在本地仓库中修改文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1%E7%A1%AE%E4%BF%9D%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E5%92%8C%E4%B8%8A%E6%B8%B8%E4%BF%9D%E6%8C%81%E4%B8%80%E8%87%B4"><span class="nav-text">3.1确保本地仓库和上游保持一致</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-%E5%88%9B%E5%BB%BA%E5%88%86%E6%94%AF"><span class="nav-text">3.2 创建分支</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E6%8F%90%E4%BA%A4%E6%96%87%E4%BB%B6"><span class="nav-text">第四步：提交文件</span></a></li></ol>
     </div>
 </div>
 
