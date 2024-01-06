@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Ray Cheng">
+    
+    <title>
+        
+            使用langchain调用GPT进行双语对齐 |
+        
+        Ray
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/x-rays.png">
+    
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.0.5/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.0.5/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.0.5/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.0.5/source/font/css/brands.min.css">
+    
+        
+            
+                
+<link rel="stylesheet" href="/css/custom-1.css">
+
+            
+        
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Ray","author":"Ray Cheng","avatar":"/images/avatar.svg","logo":"/images/x-rays.png","favicon":"/images/x-rays.png"},"menu":{"Tags":"/tags","GPT":"https://chat-gpt-next-web-robertcheng-956s-projects.vercel.app/","Archives":"/archives","About":"/about","中文":"https://robertcheng-956.github.io/zh/"},"first_screen":{"enable":true,"background_img":"/images/firstscreen2.png","background_img_dark":"/images/bg.svg","description":"Smart Language, Smarter World","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/RobertCheng-956","hashnode":"https://smartlanguage.hashnode.dev/","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"facebook":null,"email":null}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"category":false,"tag":true,"announcement":null},"post":{"author_badge":{"enable":true,"level_badge":false,"custom_badge":["炒粉","炒面","英砖生"]},"word_count":{"wordcount":true,"min2read":false},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":true,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":false,"site_uv":false,"site_pv":false,"page_pv":false}},"local_search":{"enable":true,"preload":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":null,"reaction":false,"version":2},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":true},"cdn":{"enable":true,"provider":"jsdelivr"},"pjax":{"enable":false},"footer":{"since":2020,"word_count":true,"icp":{"enable":false,"record_code":null,"url":"https://beian.miit.gov.cn"},"site_deploy":{"enable":true,"provider":"github","url":null},"shields_style":{"enable":false,"custom":[{"link_url":null,"img_url":null}]}},"inject":{"enable":true,"css":["/css/custom-1.css"],"js":[null]},"root":"","version":"4.0.5"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container border-box">
+
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/x-rays.png">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Ray
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc">
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a class=""
+                           href="/"
+                        >HOME</a>
+                    </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >TAGS</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               target="_blank" rel="noopener" href="https://chat-gpt-next-web-robertcheng-956s-projects.vercel.app/"
+                            >GPT</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >ARCHIVES</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >ABOUT</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               target="_blank" rel="noopener" href="https://robertcheng-956.github.io/zh/"
+                            >中文</a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            <li class="drawer-menu-item flex-center">
+                <a class=""
+                   href="/"
+                >HOME</a>
+            </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags"
+                    >TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       target="_blank" rel="noopener" href="https://chat-gpt-next-web-robertcheng-956s-projects.vercel.app/"
+                    >GPT</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives"
+                    >ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about"
+                    >ABOUT</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       target="_blank" rel="noopener" href="https://robertcheng-956.github.io/zh/"
+                    >中文</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        使用langchain调用GPT进行双语对齐
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Ray Cheng</span>
+                                
+                                    <span class="author-badge">炒粉</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-check"></i>&nbsp;
+                <span class="pc">2023-12-24 08:10:20</span>
+                <span class="mobile">2023-12-24 08:10</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="pc" data-updated="Sat Jan 06 2024 19:40:44 GMT+0800">2024-01-06 19:40:44</span>
+            </span>
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Langchain/">Langchain</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>4.4k Words</span>
+            </span>
+        
+        
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body">
+                    
+
+                    <p>本次使用langchain调用chatgpt来进行文本对齐最关键的地方就在于提示词的写法，在学习了格式化输出，解析输出之后，我就开始想到了使用gpt进行对齐。</p>
+<p>说干就干!!!💪</p>
+<p>关于调用langchain的一些基本用法，我是观看的吴恩达老师的网课，讲的很清晰，同时还有网页的jupyter能够配套运行，免受配环境的苦，但是在自己电脑上运行的时候，总会出问题😭</p>
+<p>使用gpt对齐，原理比较说起来比较简单(但是实际操作起来还是出了不少问题)：</p>
+<ul>
+<li>第一步：读取doc文档</li>
+<li>第二步调用gpt</li>
+<li>第三步输出为excel文档。<br>最难的就在后面两步里：</li>
+<li>调用gpt进行对齐。</li>
+<li>使用<code>ResponseSchema</code>和<code>StructuredOutputParser</code>来格式化gpt输出格式，并解析。</li>
+</ul>
+<h2 id="第一次尝试"><a href="#第一次尝试" class="headerlink" title="第一次尝试"></a>第一次尝试</h2><p>在我看来，实现对齐应该分为两步，第一步先分句，第二步再对齐。</p>
+<p>一开始我将这两步都用gpt来完成，通过提示词，来让gpt先分句再进行对齐，于是我第一次的提示词如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">template = <span class="string">&quot;&quot;&quot;I want you to act as an translator who good at\</span></span><br><span class="line"><span class="string">English and Chinese. I will give you a text in which there one Chinese\</span></span><br><span class="line"><span class="string">paragraph and one English paragraph. I need you to seperate the English\</span></span><br><span class="line"><span class="string">paragraph into sentences, and also seperate the Chinese paragras into\</span></span><br><span class="line"><span class="string">sentences according to the meaning of each English sentence. </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Remember that not change any word of paragpraphs but only seperate the paragraphs.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#123;format_instructions&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">text: &#123;text&#125;&quot;&quot;&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这时候format_instructions是这样的，一开始就是想到的放入到两个列表中去，其实一开始我也想到了使用json，但是我觉得直接放入</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Chinese_sentences= ResponseSchema(name=<span class="string">&quot;Chinese_sentences&quot;</span>, <span class="built_in">type</span> = <span class="string">&#x27;list&#x27;</span>, description = <span class="string">&#x27;add each Chiense sentences into this list&#x27;</span>)</span><br><span class="line">English_sentences= ResponseSchema(name=<span class="string">&quot;English_sentences&quot;</span>, <span class="built_in">type</span> = <span class="string">&#x27;list&#x27;</span>,description = <span class="string">&#x27;add each English sentence into this list&#x27;</span>)response_schemas = [Chinese_sentences,English_sentences]</span><br><span class="line">output_parser = StructuredOutputParser.from_response_schemas(response_schemas)</span><br><span class="line">format_instructions = output_parser.get_format_instructions()</span><br></pre></td></tr></table></figure>
+
+<p>这是输入的提示词，因为一开始我的思路就是，仿照前面那位同学的思路，来进行提示词的书写。最后这个提示词得到的结果还不错，基本是100%的正确率。</p>
+<p>但是后面在改变对齐的文本时就出现问题了。</p>
+<p>因为一开始我的需求是对齐自己译的英译汉文本，英文原文是我导布置的任务，要求译完之后，给一个句句对其的excel文本给她。这是我一开始的需求，由于我在使用gpt进行翻译的译后编辑的时候，我就已经使用gpt将翻译的中文句子置于英文句子之后了，导致我本来的文本其实基本就是格式比较工整的。所以一开始使用这段提示词的时候，输出的excel文档对齐的效果十分不错。</p>
+<p>之后我的同学让我试一试普通的中英文分开的文本，于是问题就出现了。</p>
+<h2 id="第二次尝试"><a href="#第二次尝试" class="headerlink" title="第二次尝试"></a>第二次尝试</h2><p>再使用这样的提示词，我就发现，gpt并不能完全将句子完全分开，我是让gpt以中文为主，来对齐英文，就出现了中文文本gpt没办法完全句句对齐，各种提示词都写了好几遍，类似以下这种，还有一些其他的，总之写的已经很详细了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">template = <span class="string">&quot;&quot;&quot;你现在是一个中英文本对齐师，现在你需要将中英文分句后按照句意对齐，办法是这样：\</span></span><br><span class="line"><span class="string">    首先将中英文分句并分别排序，然后拿出中文的第一句，检测英文第2句句意是否在中文的第一句中。\</span></span><br><span class="line"><span class="string">    如有，则将英文的1、2句一起与中文的第一句对齐，如没有，则只将英文的第一句与中文的第一句对齐；\</span></span><br><span class="line"><span class="string">    然后检测中文的第二句句意是否在英文的第一句中。如有，则将中文的1、2句一起与英文的第一句对齐，如没有，\</span></span><br><span class="line"><span class="string">    则只将中文的第一句与英文的第一句对齐，以此类推，将我发给你的所有文本按照句意对齐。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#123;format_instructions&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">text: &#123;text&#125;&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>而且我在gpt的网页中实验了这些提示词，也是行得通的，分出来的句子也是比较细致，而且准确率比较高。但是不知道为什么，通过调用api的方式，出来结果就是不行，我猜想是可能是受到了format_instructions的一些影响。</p>
+<p>我我一开始仍然是按照之前的ResponseSchema来固定输出，我就怀疑是不是，我最后让她将输出结果输出到两个列表中，影响了gpt对齐。于是我开始思考干脆直接让他将中英文句子对，输出为键值对，放到一个json格式中。于是这时format_instructions就改为了以下这样：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">aligned_sentences= ResponseSchema(name=<span class="string">&quot;aligned_sentences&quot;</span>, </span><br><span class="line">    description = <span class="string">&#x27;add each Chiense and English sentence pair into here as a key-value pair&#x27;</span>)</span><br><span class="line">response_schemas = [aligned_sentences]</span><br></pre></td></tr></table></figure>
+
+<p>这样之后呢，输出的结果要好一点，但是仍然不能完全将句子分开，达不到效果，还没有abbyy aligner分得好。</p>
+<h2 id="第三次尝试"><a href="#第三次尝试" class="headerlink" title="第三次尝试"></a>第三次尝试</h2><p>我就开始思考，怎么写提示词才能让gpt严格将段落分为句子。我甚至还写到，让它按照标点符号来将中文句子分开，但是它仍然分不开。在写到标点符号的时候u，我突然就想到了，既然我要让他把中文句子分开，我直接使用其他分句的手段，将句子分开，不就好了吗？然后再让gpt去英文中，把一个个中文句子的英文找出来。感觉可行，于是就使用jieba分句，然后问问gpt怎么分，它直接就告诉了我以下代码来分句：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">split_sentences</span>(<span class="params">text</span>):</span><br><span class="line">    components = re.split(<span class="string">&#x27;([。！？.!?:：])&#x27;</span>, text)  <span class="comment"># 使用正则表达式分割句子</span></span><br><span class="line">    sentences = [<span class="string">&quot;&quot;</span>.join(components[i:i+<span class="number">2</span>]) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(components)-<span class="number">1</span>, <span class="number">2</span>)]  <span class="comment"># 将句子和标点符号重新组合</span></span><br><span class="line">    <span class="keyword">return</span> sentences</span><br></pre></td></tr></table></figure>
+
+<p>接下里呢就继续修改提示词</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">template = <span class="string">&quot;&quot;&quot;你现在是一个中英文本对齐师，你将会得到一个含有一个个中文句子的列表和一个英文段落，现在你需要将这一个个中文句子的英文翻译在英文段落中找出来\</span></span><br><span class="line"><span class="string">并将它们对齐为一个句子对。比如，你先从取第一个中文句子，按照这个中文句子的句意，从英文段落开头开始匹配，将和这句中文句子相匹配的英文句子拆分出来，同这句中文句子对齐。\</span></span><br><span class="line"><span class="string">然后将这一个中文句子和英文句子对齐为一个句子对即可。依次对每个中文句子都执行这一对齐操作。直到对齐完所有的中文句子。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#123;format_instructions&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">text: &#123;text&#125;&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>最终的出来的很满意，出来的结果比aligner的更准确，gpt完全能够将每句中文的对应的英文在文中找出来。以下是部分对齐的结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;```json\n&#123;\n    &quot;aligned_sentences&quot;: &#123;\n        &quot;第二，我们必须复苏经济，推动实现更加强劲、绿色、健康的全球发展。&quot;: &quot;Second, we must revitalize the economy and promote a more robust, green, and healthy global development.&quot;,\n        &quot;发展是实现人民幸福的关键。&quot;: &quot;Development is the key to achieving the well-being of the people.&quot;,\n        &quot;面对疫情带来的严重冲击，我们要共同推动全球发展迈向平衡协调包容新阶段。&quot;: &quot;Faced with the severe impact of the pandemic, we must jointly propel global development towards a new stage of balance, coordination, and inclusiveness.&quot;,\n        &quot;在此，我愿提出全球发展倡议：&quot;: &quot;Here, I propose a Global Development Initiative:&quot;,\n        &quot;——坚持发展优先。&quot;: &quot;- Adhere to development priority:&quot;,\n        &quot;将发展置于全球宏观政策框架的突出位置，加强主要经济体政策协调，保持连续性、稳定性、可持续性，构建更加平等均衡的全球发展伙伴关系，推动多边发展合作进程协同增效，加快落实联合国2030年可持续发展议程。&quot;: &quot;Place development in a prominent position within the global macro-policy framework, strengthen policy coordination among major economies, maintain continuity, stability, and sustainability, build a more equal and balanced global development partnership, promote the coordinated and efficient progress of multilateral development cooperation processes, and accelerate the implementation of the United Nations 2030 Agenda for Sustainable Development.&quot;,\n        &quot;——坚持以人民为中心。&quot;: &quot;- Adhere to people-centered development:&quot;,\n        &quot;在发展中保障和改善民生，保护和促进人权，做到发展为了人民、发展依靠人民、发展成果由人民共享，不断增强民众的幸福感、获得感、安全感，实现人的全面发展。&quot;: &quot;In the course of development, ensure and improve people\&#x27;s well-being, protect and promote human rights, ensure that development is for the people, relies on the people, and the benefits of development are shared by the people, constantly enhance the happiness, sense of gain, and sense of security of the people, and achieve comprehensive human development.&quot;,\n        &quot;——坚持普惠包容。&quot;: &quot;- Adhere to inclusive development:&quot;,\n        &quot;关注发展中国家特殊需求，通过缓债、发展援助等方式支持发展中国家尤其是困难特别大的脆弱国家，着力解决国家间和各国内部发展不平衡、不充分问题。&quot;: &quot;Pay attention to the special needs of developing countries, support developing countries, especially those facing particular difficulties, with debt relief, development assistance, and other means, focus on addressing the issues of imbalances and inadequacies in development among and within countries.&quot;,\n        &quot;——坚持创新驱动。&quot;: &quot;- Adhere to innovation-driven development:&quot;,\n        &quot;抓住新一轮科技革命和产业变革的历史性机遇，加速科技成果向现实生产力转化，打造开放、公平、公正、非歧视的科技发展环境，挖掘疫后经济增长新动能，携手实现跨越发展。&quot;: &quot;Seize the historic opportunities of the new round of technological revolution and industrial transformation, accelerate the transformation of scientific achievements into real productivity, create an open, fair, just, and non-discriminatory environment for technological development, explore new impetus for post-pandemic economic growth, and work together to achieve leapfrog development.&quot;,\n        &quot;——坚持人与自然和谐共生。&quot;: &quot;- Adhere to harmonious coexistence between humans and nature:&quot;,\n        &quot;完善全球环境治理，积极应对气候变化，构建人与自然生命共同体。&quot;: &quot;Improve global environmental governance, actively address climate change, and build a community of life for all living things.&quot;,\n        &quot;加快绿色低碳转型，实现绿色复苏发展。&quot;: &quot;Accelerate the green and low-carbon transformation, achieve green recovery and development.&quot;,\n  ......&#125;\n&#125;\n```</span></span><br></pre></td></tr></table></figure>
+
+<p>甚至还试了一下如果我将文中的某英文给删除掉，看他最终出来的结果会怎么样。最终发现，gpt会自己翻译一句话，把这句话给补上，不过如果英文句子删多了，他对齐的效果就没那么好了。</p>
+<p>总的来说，我觉得使用gpt来对齐，是完全可行的，只是需要不断完善，做到这这里其实也有还有一些问题没有实现:</p>
+<ul>
+<li>如果上传的文档字数太多的话，token会超出限制，目前我也没想到解决的办法。</li>
+<li>如何保证gpt不会修改原文，这个问题我觉得可以在提示词上再优化</li>
+<li>有时候中文的一个句子也比较长，包含了好几个意群，如何能够进一步拆分</li>
+</ul>
+<p>这是目前我能够想到的一些问题。</p>
+<h2 id="一点小感悟"><a href="#一点小感悟" class="headerlink" title="一点小感悟"></a>一点小感悟</h2><p>但我觉得，完成这样一个小的程序编写，我已经学会了很多。在做中学，在做中思，做着做着，就会发现不足，就会找到问题，慢慢的逐渐完善起来了。从需求出发，我觉得才有做的动力，才能解决实际的问题，最后我将这个程序使用streamlit写了一个简陋的网页，来完成拖拽上传，自动下载excel。不论这个程序完善与否，至少满足了我一开始的需求。</p>
+<p>以下是我的所有代码，供大家参考，如果有好的想法，可以一起交流😀</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> langchain.output_parsers <span class="keyword">import</span> StructuredOutputParser, ResponseSchema</span><br><span class="line"><span class="keyword">from</span> langchain.prompts <span class="keyword">import</span> ChatPromptTemplate, PromptTemplate</span><br><span class="line"><span class="keyword">from</span> langchain.chat_models <span class="keyword">import</span> ChatOpenAI</span><br><span class="line"><span class="keyword">import</span> openai</span><br><span class="line"><span class="keyword">import</span> docx</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> zip_longest</span><br><span class="line"><span class="keyword">import</span> jieba</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="comment"># load the document</span></span><br><span class="line">doc = docx.Document(<span class="string">&#x27;21-习近平 机器翻译 AI.docx&#x27;</span>)</span><br><span class="line">chinese_paragraphs = []</span><br><span class="line">english_paragraphs = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> paragraph <span class="keyword">in</span> doc.paragraphs:</span><br><span class="line">    text = paragraph.text.strip()</span><br><span class="line">    <span class="keyword">if</span> re.search(<span class="string">&#x27;[\u4e00-\u9fff]&#x27;</span>, text):  <span class="comment"># 匹配中文字符</span></span><br><span class="line">        chinese_paragraphs.append(text)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        english_paragraphs.append(text)</span><br><span class="line"></span><br><span class="line"><span class="comment">#connect each line into paragraphs</span></span><br><span class="line">chinese_paragraphs = <span class="string">&#x27;&#x27;</span>.join(chinese_paragraphs)</span><br><span class="line">english_paragraphs = <span class="string">&#x27;&#x27;</span>.join(english_paragraphs)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">split_sentences</span>(<span class="params">text</span>):</span><br><span class="line">    components = re.split(<span class="string">&#x27;([。！？.!?:：])&#x27;</span>, text)  <span class="comment"># 使用正则表达式分割句子</span></span><br><span class="line">    sentences = [<span class="string">&quot;&quot;</span>.join(components[i:i+<span class="number">2</span>]) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(components)-<span class="number">1</span>, <span class="number">2</span>)]  <span class="comment"># 将句子和标点符号重新组合</span></span><br><span class="line">    <span class="keyword">return</span> sentences</span><br><span class="line"></span><br><span class="line"><span class="comment"># connect the Chinese sentence list and the English paragraph as input text</span></span><br><span class="line">Chinese_sentences = split_sentences(chinese_paragraphs)</span><br><span class="line">input_text = <span class="built_in">str</span>(Chinese_sentences)+<span class="string">&#x27;\n&#x27;</span>+english_paragraphs</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># load the api_key</span></span><br><span class="line"><span class="keyword">from</span> dotenv <span class="keyword">import</span> load_dotenv, find_dotenv</span><br><span class="line">_ = load_dotenv(find_dotenv()) <span class="comment"># read local .env file</span></span><br><span class="line">openai.api_key = os.environ[<span class="string">&#x27;OPENAI_API_KEY&#x27;</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># account for deprecation of LLM model</span></span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line">current_date = datetime.datetime.now().date()</span><br><span class="line">target_date = datetime.date(<span class="number">2024</span>, <span class="number">6</span>, <span class="number">12</span>)</span><br><span class="line"><span class="keyword">if</span> current_date &gt; target_date:</span><br><span class="line">    llm_model = <span class="string">&quot;gpt-3.5-turbo&quot;</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    llm_model = <span class="string">&quot;gpt-3.5-turbo-0301&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># structured output template</span></span><br><span class="line">aligned_sentences= ResponseSchema(name=<span class="string">&quot;aligned_sentences&quot;</span>, </span><br><span class="line">    description = <span class="string">&#x27;add each Chiense and English sentence pair into here as a key-value pair&#x27;</span>)</span><br><span class="line">response_schemas = [aligned_sentences]</span><br><span class="line"></span><br><span class="line"><span class="comment"># output_parser to parse gpt&#x27;s response</span></span><br><span class="line">output_parser = StructuredOutputParser.from_response_schemas(response_schemas)</span><br><span class="line"></span><br><span class="line"><span class="comment"># format the structured output template</span></span><br><span class="line">format_instructions = output_parser.get_format_instructions()</span><br><span class="line">format_instructions</span><br><span class="line"></span><br><span class="line"><span class="comment"># prompt template</span></span><br><span class="line">template = <span class="string">&quot;&quot;&quot;你现在是一个中英文本对齐师，你将会得到一个含有一个个中文句子的列表和一个英文段落，现在你需要将这一个个中文句子的英文翻译在英文段落中找出来\</span></span><br><span class="line"><span class="string">并将它们对齐为一个句子对。比如，你先从取第一个中文句子，按照这个中文句子的句意，从英文段落开头开始匹配，将和这句中文句子相匹配的英文句子拆分出来，同这句中文句子对齐。\</span></span><br><span class="line"><span class="string">然后将这一个中文句子和英文句子对齐为一个句子对即可。依次对每个中文句子都执行这一对齐操作。直到对齐完所有的中文句子。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#123;format_instructions&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">text: &#123;text&#125;&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">align_prompt_template = ChatPromptTemplate.from_template(template)</span><br><span class="line"></span><br><span class="line"><span class="comment"># detailed prompt</span></span><br><span class="line">align_prompt = align_prompt_template.format_messages(text = input_text, format_instructions=format_instructions)</span><br><span class="line"></span><br><span class="line"><span class="comment">#call gpt</span></span><br><span class="line">chat = ChatOpenAI(temperature = <span class="number">0.7</span>, model = llm_model)</span><br><span class="line"></span><br><span class="line">response = chat(align_prompt)</span><br><span class="line"></span><br><span class="line"><span class="comment"># use parser to parse the structured output</span></span><br><span class="line">output_dict = output_parser.parse(response.content)[<span class="string">&#x27;aligned_sentences&#x27;</span>]</span><br><span class="line"><span class="built_in">type</span>(output_dict)</span><br><span class="line"></span><br><span class="line"><span class="comment"># convert json into DataFrame with keys and values as two columns</span></span><br><span class="line">df = pd.DataFrame.from_dict(output_dict, orient=<span class="string">&#x27;index&#x27;</span>).reset_index()</span><br><span class="line"></span><br><span class="line"><span class="comment"># name two columns</span></span><br><span class="line">df.columns = [<span class="string">&#x27;中文&#x27;</span>, <span class="string">&#x27;英文&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># write DataFrame into a Excel file</span></span><br><span class="line">df.to_excel(<span class="string">&quot;output_1.xlsx&quot;</span>, index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+
+<p>以下是streamlit网页的代码：</p>
+<p>因为我之前的提示词，完全能够满足我的需求，我需要对齐的文档，中英字数也没有超过token的限制，所以我使用的之前的提示词模板。</p>
+<p>streamlit中的代码主要是完善了一些小的细节：</p>
+<ul>
+<li>自动命名excel的文件</li>
+<li>在页面上显示提取的中英文本</li>
+<li>使用zip防止excel单元格为空报错</li>
+<li>添加访问的代理</li>
+<li>可以填入不同的api_key</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> langchain.output_parsers <span class="keyword">import</span> StructuredOutputParser, ResponseSchema</span><br><span class="line"><span class="keyword">from</span> langchain.prompts <span class="keyword">import</span> ChatPromptTemplate, PromptTemplate</span><br><span class="line"><span class="keyword">from</span> langchain.chat_models <span class="keyword">import</span> ChatOpenAI</span><br><span class="line"><span class="keyword">import</span> openai</span><br><span class="line"><span class="keyword">from</span> docx <span class="keyword">import</span> Document</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> zip_longest</span><br><span class="line"><span class="keyword">import</span> streamlit <span class="keyword">as</span> st</span><br><span class="line"><span class="keyword">from</span> dotenv <span class="keyword">import</span> load_dotenv, find_dotenv</span><br><span class="line"></span><br><span class="line">st.set_page_config(page_title=<span class="string">&quot;Bilingual Alignment&quot;</span>, page_icon=<span class="string">&quot;📖&quot;</span>)</span><br><span class="line">st.markdown(<span class="string">&quot;# Bilingual Alignment&quot;</span>)</span><br><span class="line">st.sidebar.header(<span class="string">&quot;Bilingual Alignment&quot;</span>)</span><br><span class="line">st.write(</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    You can upload your bilingual doc(zh_EN or en_US). </span></span><br><span class="line"><span class="string">    This app will help you to align Chinese and English text and the last output an excel file</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">os.environ[<span class="string">&#x27;HTTP_PROXY&#x27;</span>] = <span class="string">&#x27;http:***&#x27;</span></span><br><span class="line">os.environ[<span class="string">&#x27;HTTPS_PROXY&#x27;</span>] = <span class="string">&#x27;http:***&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># account for deprecation of LLM model</span></span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line">current_date = datetime.datetime.now().date()</span><br><span class="line">target_date = datetime.date(<span class="number">2024</span>, <span class="number">6</span>, <span class="number">12</span>)</span><br><span class="line"><span class="keyword">if</span> current_date &gt; target_date:</span><br><span class="line">    llm_model = <span class="string">&quot;gpt-3.5-turbo&quot;</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    llm_model = <span class="string">&quot;gpt-3.5-turbo-0301&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">extract_paragraphs</span>(<span class="params">docx_file</span>):</span><br><span class="line">    <span class="comment">#extract text from the document</span></span><br><span class="line">    doc = Document(docx_file)</span><br><span class="line">    chinese_paragraphs = []</span><br><span class="line">    english_paragraphs = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> paragraph <span class="keyword">in</span> doc.paragraphs:</span><br><span class="line">        text = paragraph.text.strip()</span><br><span class="line">        <span class="keyword">if</span> re.search(<span class="string">&#x27;[\u4e00-\u9fff]&#x27;</span>, text):  <span class="comment"># 匹配中文字符</span></span><br><span class="line">            chinese_paragraphs.append(text)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            english_paragraphs.append(text)</span><br><span class="line">    chinese_paragraphs = <span class="string">&#x27;&#x27;</span>.join(chinese_paragraphs)</span><br><span class="line">    english_paragraphs = <span class="string">&#x27;&#x27;</span>.join(english_paragraphs)</span><br><span class="line">    input_text = english_paragraphs + <span class="string">&#x27;\n&#x27;</span> + chinese_paragraphs</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> input_text</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">prompt_template</span>():</span><br><span class="line">    <span class="comment"># Define the prompt template</span></span><br><span class="line">    Chinese_sentences= ResponseSchema(name=<span class="string">&quot;Chinese_sentences&quot;</span>, <span class="built_in">type</span> = <span class="string">&#x27;list&#x27;</span>, </span><br><span class="line">                                        description = <span class="string">&#x27;add each Chiense sentences into this list&#x27;</span>)</span><br><span class="line">    English_sentences= ResponseSchema(name=<span class="string">&quot;English_sentences&quot;</span>, <span class="built_in">type</span> = <span class="string">&#x27;list&#x27;</span>,</span><br><span class="line">                                        description = <span class="string">&#x27;add each English sentence into this list&#x27;</span>)</span><br><span class="line">    response_schemas = [Chinese_sentences,English_sentences]</span><br><span class="line">    output_parser = StructuredOutputParser.from_response_schemas(response_schemas)</span><br><span class="line">    format_instructions = output_parser.get_format_instructions()</span><br><span class="line">    </span><br><span class="line">    template = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    你现在是一个中英文本对齐师，现在你需要将中英文分句后按照句意对齐，办法是这样：\</span></span><br><span class="line"><span class="string">    首先将中英文分句并分别排序，然后拿出中文的第一句，检测英文第2句句意是否在中文的第一句中。\</span></span><br><span class="line"><span class="string">    如有，则将英文的1、2句一起与中文的第一句对齐，如没有，则只将英文的第一句与中文的第一句对齐；\</span></span><br><span class="line"><span class="string">    然后检测中文的第二句句意是否在英文的第一句中。如有，则将中文的1、2句一起与英文的第一句对齐，如没有，\</span></span><br><span class="line"><span class="string">    则只将中文的第一句与英文的第一句对齐，以此类推，将我发给你的所有文本按照句意对齐。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &#123;format_instructions&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    text: &#123;text&#125;&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> template, format_instructions, output_parser</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">call_gpt</span>(<span class="params">template,input_text,format_instructions,output_parser</span>):</span><br><span class="line">    _ = load_dotenv(find_dotenv()) <span class="comment"># read local .env file</span></span><br><span class="line">    openai.api_key = os.environ[<span class="string">&#x27;OPENAI_API_KEY&#x27;</span>]</span><br><span class="line">    <span class="comment">#call gpt to answer  </span></span><br><span class="line">    align_prompt_template = ChatPromptTemplate.from_template(template)</span><br><span class="line">    align_prompt = align_prompt_template.format_messages(text = input_text,</span><br><span class="line">                                                        format_instructions=format_instructions)</span><br><span class="line">    chat = ChatOpenAI(temperature = <span class="number">0.7</span>, model = llm_model)</span><br><span class="line">    response = chat(align_prompt)</span><br><span class="line">    <span class="built_in">print</span>(response.content)</span><br><span class="line">    <span class="comment"># Parse the response and output to a excel file</span></span><br><span class="line"></span><br><span class="line">    Chinese_sentence_list = output_parser.parse(response.content)[<span class="string">&quot;Chinese_sentences&quot;</span>]</span><br><span class="line">    English_sentence_list = output_parser.parse(response.content)[<span class="string">&quot;English_sentences&quot;</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> Chinese_sentence_list, English_sentence_list</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">write_excel</span>(<span class="params">Chinese_sentence_list, English_sentence_list, base_filename</span>):</span><br><span class="line">    st.write(<span class="string">&quot;正在写入excel文件&quot;</span>)</span><br><span class="line">    zipped = zip_longest(English_sentence_list, Chinese_sentence_list)</span><br><span class="line">    <span class="comment"># create a DataFrame </span></span><br><span class="line">    df = pd.DataFrame(zipped, columns = [<span class="string">&quot;英文&quot;</span>,<span class="string">&quot;中文&quot;</span>])</span><br><span class="line">    <span class="comment"># write it into a excel file</span></span><br><span class="line">    excel_filename = <span class="string">f&#x27;<span class="subst">&#123;base_filename&#125;</span>_output.xlsx&#x27;</span></span><br><span class="line">    df.to_excel(excel_filename, index=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    uploaded_file = st.file_uploader(<span class="string">&quot;上传中英文双语Word文档&quot;</span>, <span class="built_in">type</span>=[<span class="string">&quot;docx&quot;</span>])</span><br><span class="line">    <span class="keyword">if</span> uploaded_file <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        <span class="comment"># get the name of the uploaded file</span></span><br><span class="line">        uploaded_filename = uploaded_file.name</span><br><span class="line">        <span class="comment"># remove the extension of the name</span></span><br><span class="line">        base_filename = os.path.splitext(uploaded_filename)[<span class="number">0</span>]</span><br><span class="line">        input_text = extract_paragraphs(uploaded_file)</span><br><span class="line">        st.write(<span class="string">&quot;中英文本&quot;</span>)</span><br><span class="line">        st.write(input_text)</span><br><span class="line">        template, format_instructions, output_parser = prompt_template()</span><br><span class="line">        Chinese_sentence_list, English_sentence_list = call_gpt(template,input_text,format_instructions,output_parser)</span><br><span class="line">        write_excel(Chinese_sentence_list, English_sentence_list, base_filename)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/Langchain/">Langchain</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                            <div class="post-share-container border-box">
+    <ul class="share-list-wrap border-box">
+        <li class="qq share-item border-box flex-center tooltip"
+            data-tooltip-content="Share to QQ"
+        >
+            <i class="fa-brands fa-qq"></i>
+        </li>
+        <li class="wechat share-item border-box flex-center tooltip tooltip-img"
+            data-tooltip-content="Share to WeChat"
+            data-tooltip-img-tip="Scan by WeChat"
+            data-tooltip-img-style="background-color: #fff; top: -10px; padding: 0.6rem 0.6rem 0.1rem 0.6rem;"
+        >
+            <i class="fa-brands fa-weixin"></i>
+        </li>
+        <li class="weibo share-item border-box flex-center tooltip"
+            data-tooltip-content="Share to WeiBo"
+        >
+            <i class="fa-brands fa-weibo"></i>
+        </li>
+    </ul>
+</div>
+
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2024/01/06/listary%20and%20everything%20more%20powerful%20search/"
+                                   title="Listary + Everything"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">Listary + Everything</span>
+                                        <span class="post-nav-item">Prev posts</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2023/12/23/How-to-create-pull-request/"
+                                   title="Technical writer小白如何成为开源项目的贡献者？"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">Technical writer小白如何成为开源项目的贡献者？</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%9D%E8%AF%95"><span class="nav-text">第一次尝试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AC%A1%E5%B0%9D%E8%AF%95"><span class="nav-text">第二次尝试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%B0%9D%E8%AF%95"><span class="nav-text">第三次尝试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E7%82%B9%E5%B0%8F%E6%84%9F%E6%82%9F"><span class="nav-text">一点小感悟</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="border-box website-info-box default">
+        
+            <div class="copyright-info info-item default">
+                &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2024
+                
+                    &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Ray Cheng</a>
+                
+            </div>
+
+            <div class="theme-info info-item default">
+                Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+            </div>
+
+            
+
+            
+                
+                <div class="deploy-info info-item default">
+                    
+                        This site is deployed on <span class="tooltip" data-tooltip-content="GitHub Pages"><img src="/images/deploy-provider/github.png"></span>
+                    
+                </div>
+            
+        
+
+        <div class="count-item info-item default">
+            
+                <span class="count-box border-box word">
+                    <span class="item-type border-box">Total words</span>
+                    <span class="item-value border-box word">8.7k</span>
+                </span>
+            
+
+            
+
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="tools-list border-box">
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-toggle-theme-mode flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%B0%9D%E8%AF%95"><span class="nav-text">第一次尝试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AC%A1%E5%B0%9D%E8%AF%95"><span class="nav-text">第二次尝试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%B0%9D%E8%AF%95"><span class="nav-text">第三次尝试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E7%82%B9%E5%B0%8F%E6%84%9F%E6%82%9F"><span class="nav-text">一点小感悟</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+<!-- common -->
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.0.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.0.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.0.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.0.5/source/js/toggle-theme.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.0.5/source/js/code-block.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.0.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.0.5/source/js/libs/anime.min.js"></script>
+
+<!-- local-search -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.0.5/source/js/local-search.js"></script>
+
+
+<!-- lazyload -->
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.0.5/source/js/lazyload.js"></script>
+
+
+<div class="">
+    
+        <!-- post-helper -->
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.0.5/source/js/post/post-helper.js"></script>
+
+        <!-- toc -->
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.0.5/source/js/post/toc.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@4.0.5/source/js/post/share.js"></script>
+        
+    
+
+    <!-- category-page -->
+    
+
+    <!-- links-page -->
+    
+
+    <!-- photos-page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+    
+        
+    
+
+</body>
+</html>
