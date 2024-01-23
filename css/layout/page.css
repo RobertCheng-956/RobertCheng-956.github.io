@@ -1,7 +1,16 @@
 .page-container {
   width: 100%;
   height: auto;
-  background: var(--background-color-1);
+/*background var(--background-color-1)*/
+/*背景图片路径*/
+  background: url("https://cdn.jsdelivr.net/gh/RobertCheng-956/Blog_pic@master/spongebobbottom.png");
+/*背景图片不重复多次显示*/
+  background-repeat: no-repeat;
+/*窗口放缩时背景图片中心始终在屏幕中心*/
+  background-position: center;
+/*背景图片固定，不滚动*/
+  background-attachment: fixed;
+/*图片大小自适应窗口大小*/
   background-size: cover;
 }
 .page-container .page-main-content {
@@ -79,6 +88,8 @@ keep-mobile()
 }
 .page-container .page-main-content .page-main-content-bottom {
   width: 100%;
+  background: linear-gradient(to bottom, rgba(255,255,255,0), #fff);
+  padding-top: 70px;
 }
 .page-container .post-tools {
   position: fixed;

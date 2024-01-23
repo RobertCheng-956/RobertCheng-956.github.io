@@ -1,6 +1,6 @@
 :root {
-    --first-screen-font-size: 2rem;
-    --first-screen-font-color-light: rgba(223, 224, 210, 0.921);
+    --first-screen-font-size: 2.5rem;
+    --first-screen-font-color-light: rgba(243, 243, 236, 0.921);
     --header-backdrop-filter-blur: 10px;
     --header-height: 55px;
     --box-border-radius: 20px;
